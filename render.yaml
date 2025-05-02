@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: whatsapp-bot
+    name: marketing_ai_agent
     env: python
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python server.py"
