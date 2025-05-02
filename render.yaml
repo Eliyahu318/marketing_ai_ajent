@@ -2,9 +2,10 @@ services:
   - type: web
     name: marketing_ai_agent
     env: python
+    plan: free
+    rootDir: ai_marketing_ajent
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python interfaces/server.py"
-    plan: free
     envVars:
-      - key: OPENAI_API_KEY   # אם עוד לא הגדרת – חובה!
+      - key: OPENAI_API_KEY
         sync: false
