@@ -25,7 +25,7 @@ def whatsapp_webhook():
         users[from_number] = MarketingAgent.load_state(name=from_number)
     ajent = users[from_number]
 
-    response_text = ajent.process_user_message(incoming_msg)
+    response_text = ajent.process_conversational_lead(incoming_msg)
 
     twiml = MessagingResponse()
     twiml.message(response_text)
