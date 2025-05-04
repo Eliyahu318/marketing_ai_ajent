@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent
 class Settings(BaseSettings):
     # --- API keys ---
     openai_api_key: str = Field(..., env="OPENAI_API_KEY")
-    huggingface_token: str = Field(..., env="HUGGINGFACE_TOKEN")
+    # huggingface_token: str = Field(..., env="HUGGINGFACE_TOKEN")
     twilio_account_sid: str | None = Field(None, env="TWILIO_ACCOUNT_SID")
     twilio_auth_token: str | None = Field(None, env="TWILIO_AUTH_TOKEN")
 
