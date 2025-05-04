@@ -30,19 +30,16 @@ CONVERSATION_PROMPT = """
 - שמור על שיחה זורמת, מקצועית ואנושית.
 
 בסיום השיחה:
-- לאחר שיש בידך את ארבעת הפרטים הנדרשים, הצג ללקוח סיכום קצר ובקש אישור.
-- רק לאחר האישור, החזר JSON בפורמט הבא:
+- לאחר שיש בידך את ארבעת הפרטים הנדרשים, החזר json בפורמט הבא: 
 
 {{"name": "...", "phone_number": "...", "business_sector": "...", "expectation": "..."}}
-
-- וסיים באמירה: "תודה! הפרטים נשמרו ונציג יחזור אליך בקרוב 🙌"
 """
 
 # Prompt to confirm collected details with the customer
 CONFIRM_DETAILS_PROMPT = """
 זה המידע הרלוונטי: {lead_info},
 
-החזר סיכום קצר של המידע הזה ללקוח, עם שאלה אליו האם הוא מאשר את הנתונים.
+החזר סיכום קצר של המידע הזה ללקוח, עם שאלה אליו האם הוא מאשר את הנתונים. תשאל אותו בצורה מנוסמסת אנושית לחלוטין.
 """
 
 # Prompt to update lead data based on a customer-requested correction

@@ -11,7 +11,7 @@ from config import settings
 from agent.gpt_client import ask_gpt
 from agent.prompts import CONVERSATION_PROMPT, CONFIRM_DETAILS_PROMPT, \
     UPDATE_LEAD_PROMPT, CLASSIFY_INTENT_PROMPT
-from storeage.storage import ensure_file_exists, append_jsonl_file, load_json_file
+from storage.storage import ensure_file_exists, append_jsonl_file, load_json_file
 from agent.lead_validator import validate_lead
 from agent.finalize_lead import finalize_lead
 from interfaces.info_sender import send_email
@@ -23,11 +23,11 @@ logging.getLogger("openai").setLevel(logging.WARNING)
 logging.getLogger("httpx").setLevel(logging.WARNING)
 logging.getLogger("httpcore").setLevel(logging.WARNING)
 
-FILE_LEADS_NAME = str(settings.lead_template)
-FILE_MESSAGES_NAME = str(settings.chat_template)
-
-FILE_LEADS_LOG = str(settings.log_lead_template)
-FILE_MESSAGES_LOGS = str(settings.log_chat_template)
+# FILE_LEADS_NAME = str(settings.lead_template)
+# FILE_MESSAGES_NAME = str(settings.chat_template)
+#
+# FILE_LEADS_LOG = str(settings.log_lead_template)
+# FILE_MESSAGES_LOGS = str(settings.log_chat_template)
 
 
 class MarketingAgent:
