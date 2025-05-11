@@ -23,12 +23,6 @@ logging.getLogger("openai").setLevel(logging.WARNING)
 logging.getLogger("httpx").setLevel(logging.WARNING)
 logging.getLogger("httpcore").setLevel(logging.WARNING)
 
-# FILE_LEADS_NAME = str(settings.lead_template)
-# FILE_MESSAGES_NAME = str(settings.chat_template)
-#
-# FILE_LEADS_LOG = str(settings.log_lead_template)
-# FILE_MESSAGES_LOGS = str(settings.log_chat_template)
-
 
 class MarketingAgent:
     def __init__(self, name: str, messages_history: list = None, lead_info: dict = None, state: dict = None):
