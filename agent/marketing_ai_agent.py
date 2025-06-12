@@ -80,28 +80,23 @@ class MarketingAgent:
         self._messages_history.append({"role": "assistant", "content": response})  # ?
         return response
 
-    def extract_json_from_text(self, text: str) -> dict | None:
-        try:
-            match = re.search(r"\{.*\}", text, re.DOTALL)
-            if match:
-                return json.loads(match.group())
-        except Exception:
-            return None
-
     def check_finish_conversation(self, response: str) -> str | bool:
-        if self.extract_json_from_text(response):
-            self._lead_info = self.extract_json_from_text(response)
-            valid_info = validate_lead(self._lead_info)
-            if valid_info[0]:
-                confirmation_prompt = CONFIRM_DETAILS_PROMPT.format(lead_info=dict(islice(self._lead_info.items(), 4)))
-                confirmation_message = ask_gpt(messages=[{"role": "system", "content": confirmation_prompt}])
-                self._state["awaiting_confirmation"] = True
-                self._state["last_updated"] = datetime.now().isoformat()
-                self._messages_history.append({"role": "assistant", "content": confirmation_message})
-                return confirmation_message
-            else:
-                return valid_info[1]
-        return False
+        try:
+            match = re.search(r"\{.*\}", response, re.DOTALL)
+            if match:
+                self._lead_info = json.loads(match.group())
+                valid_info = validate_lead(self._lead_info)
+                if valid_info[0]:
+                    confirmation_prompt = CONFIRM_DETAILS_PROMPT.format(lead_info=dict(islice(self._lead_info.items(), 4)))
+                    confirmation_message = ask_gpt(messages=[{"role": "system", "content": confirmation_prompt}])
+                    self._state["awaiting_confirmation"] = True
+                    self._state["last_updated"] = datetime.now().isoformat()
+                    self._messages_history.append({"role": "assistant", "content": confirmation_message})
+                    return confirmation_message
+                else:
+                    return valid_info[1]
+        except Exception:
+            return False
 
     def continue_conversation(self, response):
         self._messages_history.append({"role": "assistant", "content": response})
